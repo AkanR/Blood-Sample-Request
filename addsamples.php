@@ -29,14 +29,12 @@ elseif($_SESSION['usertype'] == "hospital")
 <body>
     <div class="container" style="margin-top: 40px;">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="col-lg-12 col-md-6 col-xs-6">
                 <div>
                     <center>
                     <?php display_message();?>
-                        <h1>Add samples</h1>
-                        <br><br>
+                        <h1>Add Samples</h1>
                         <form action="" method="post">
-                            <?php display_message(); ?>
                             <div class="form-group">
                             <br><p>Please select type of blood group available:</p>
                                 <div class="form-group">
@@ -64,7 +62,7 @@ elseif($_SESSION['usertype'] == "hospital")
                                     name="bloodgroup" value="AB-">
                                     <label for="bloodChoice6">AB-</label>
                                 </div>
-                            <input class="form-control" type="submit" class="btn btn-info" id="btn-info" name="addsample" value="Add Sample" style="background-color: #17a2b8; color:white;">
+                            <input class="form-control" type="submit" class="btn btn-info" id="btn-info" name="addsample" value="Add Sample" style="background-color: #17a2b8; color:white; width:250px;">
                         </form>
                     </center>
                     
@@ -76,6 +74,7 @@ elseif($_SESSION['usertype'] == "hospital")
                         $availablesample = $_POST['bloodgroup'];
                         $hospitalid = $_SESSION['id'];
                         addsample($hospitalid,$availablesample);
+                        set_message("A sample is added, now users can request for it");
                     }
                 ?>
             <div class="col-lg-6 col-md-6 col-xs-6">

@@ -159,7 +159,7 @@ function addsample($hospitalid,$availablesample)
 {
     $query= query("INSERT into sample (hospitalid,availablesample) values ('$hospitalid','$availablesample')");
     confirm($query);
-    set_message("A sample is added, now users can request for it");
+    
 }
 //display available samples
 function display_availablesamples()
@@ -169,7 +169,7 @@ function display_availablesamples()
     confirm($query);
     while($row = fetch_array($query))
      {
-         $displaycars= <<<DELIMETER
+         $displaysamples= <<<DELIMETER
                  
         <div class="col-lg-4" style="margin-top:50px">
               <div class="jumbotron">
@@ -180,6 +180,9 @@ if(isset($_SESSION['id']))
 {
     $displayhiddeninputs = <<<DELIMETER
     <form action="" method="post">
+    <input type="hidden" name="hospitalid" value={$row['id']}>
+    <input type="hidden" name="userid" value={$_SESSION['id']}>
+    <input type="hidden" name="sampleid" value={$row['sample_id']}>
     <input class="form-control" type="submit" class="btn btn-info" name="requestsample" value="Request Sample" style="background-color: #17a2b8; color:white;">
     </div>
     </div>
@@ -192,7 +195,46 @@ else{
     </div>
     DELIMETER;
 }
-          echo $displaycars;
+          echo $displaysamples;
           echo $displayhiddeninputs;
      }
+}
+
+//requesting samples and storing in db
+function requestsample($userid,$hospitalid,$sampleid)
+{
+    $query= query("INSERT into requests (s_id,h_id,u_id) values ('$sampleid ','$hospitalid','$userid')");
+    confirm($query);
+    set_message("Request has been received!");
+
+}
+
+function display_requests()
+{
+    $hospital_id = $_SESSION['id'];
+    $query=query("select *
+    from
+        requests a
+            inner join
+        sample b
+            on a.s_id = b.sample_id AND a.h_id = b.hospitalid
+            inner join 
+        users c
+            on a.u_id = c.id");
+    confirm($query);
+    while($row = fetch_array($query))
+    {
+        $displayrequests= <<<DELIMETER
+                 
+        <div class="col-lg-4" style="margin-top:50px">
+              <div class="jumbotron">
+                <p><b>Name of Requester - {$row['name']}</b></p>
+                <p><b>Emailid of Requester - {$row['emailid']}</b></p>
+                <p><b>Contact of Requester - {$row['phone']}</b></p>
+                <p><b>Blood Sample Requested - {$row['availablesample']}</b></p>
+                </div>
+        </div>               
+DELIMETER; 
+echo $displayrequests;
+    }
 }

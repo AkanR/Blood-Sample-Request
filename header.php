@@ -12,7 +12,7 @@
             <a class="nav-link" href="./user-login.php" style="color: white;"><b>Login</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./requestsample.php" style="color: white;"><b>Available blood samples</b></a>
+            <a class="nav-link" href="./requestsample.php" style="color: white;"><b>Available samples</b></a>
           </li>
         </ul>
       </div>

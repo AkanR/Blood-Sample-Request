@@ -40,7 +40,11 @@ else
 <?php
 }
 if(isset($_POST['requestsample'])) 
-{
-    set_message("Request has been received!");
+{ 
+    $sampleid = $_POST['sampleid'];
+    $userid = $_POST['userid'];
+    $hospitalid = $_POST['hospitalid'];
+    requestsample($userid,$hospitalid,$sampleid);
+    
 }
 ?>

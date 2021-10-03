@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown" style="font-family: 'unbuntu'; font-size: 20px;">
         <ul class="navbar navbar-nav end">
           <li class="nav-item">
-            <a class="nav-link" href="./requestsample.php" style="color: white;"><b>Available blood samples</b></a>
+            <a class="nav-link" href="./requestsample.php" style="color: white;"><b>Available samples</b></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./logout.php" style="color: white;"><b>Logout</b></a>
